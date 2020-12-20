@@ -1,0 +1,86 @@
+﻿@model Lunch.ViewModels.PlacesData
+
+@{
+    ViewData["Title"] = "Details";
+}
+@foreach (var item in Model.Places)
+{
+    <h1>
+        @Html.DisplayFor(model => item.place_name)
+    </h1>
+
+    <div>
+        <hr />
+        <dl class="row">
+            <dd class="col-sm-10">
+                <img src="@Html.DisplayFor(model => item.img)" alt="альтернативный текст">
+            </dd>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.short_desc)
+            </dd>
+
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.desc)
+            </dd>
+
+            <dd class="col-sm-10">
+                Средний счет: @Html.DisplayFor(model => item.av_price)
+            </dd>
+
+
+            <dd class="col-sm-10">
+                Адрес: @Html.DisplayFor(model => item.address)
+            </dd>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => item.phone)
+            </dd>
+
+            <dd class="col-sm-10">
+                Кухня: @Html.DisplayFor(model => item.Kitchen.kitchen_name)
+            </dd>
+
+            <dd class="col-sm-10">
+                Ссылки: @Html.DisplayFor(model => item.Links)
+            </dd>
+
+            <dd class="col-sm-10">
+                @{
+                    foreach (var link in item.Links)
+                    {
+                        <p><a href="@link.url">@link.link_name</a></p>
+
+
+                        
+                    }
+                }
+            </dd>
+
+            <dd class="col-sm-10">
+                @{
+                    foreach (var menu in item.Menus)
+                    {
+                        <hr>
+                        <p>Название: @menu.menu_name</p>
+                        <p>Описание: @menu.product_desc</p>
+                        <p>Первое: @menu.first</p>
+                        <p>Второе: @menu.second</p>
+                        <p>Напиток: @menu.drink</p>
+                        <p>Салат: @menu.salat</p>
+                        <p style="margin-bottom:20px">Цена: @menu.price тг</p>
+
+                        
+
+                    }
+                }
+            </dd>
+
+
+        </dl>
+    </div>
+                    
+    <div style="margin-bottom:40px">
+        <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+    }

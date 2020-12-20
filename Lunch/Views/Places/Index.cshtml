@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Все столовые с ланчем";
+}
+
+<h1>Все места для ланчей</h1>
+<h1>Выбранная кухня @Model.currKitchen</h1>
+
+<div class="row mt-5 mb-2">
+    @{
+        foreach (Place place in Model.allPlaces)
+        {
+            @Html.Partial("AllPlaces", place)
+
+        }
+    }
+</div>
